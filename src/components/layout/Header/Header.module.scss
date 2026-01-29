@@ -110,23 +110,56 @@
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;
+    //bottom: 0;
     width: 320px;
     max-width: 85vw;
-    background: linear-gradient(180deg, $color-white 0%, $color-light 100%);
+    background: linear-gradient(180deg, $color-dark 0%, darken($color-dark, 5%) 100%);
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    padding: $spacing-4xl $spacing-lg $spacing-lg;
+    padding: 0 $spacing-lg $spacing-lg;
     transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0.4s;
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.4);
     z-index: $z-index-modal;
+    visibility: hidden;
+    height: 100vh;
 
     &.open {
       transform: translateX(0);
+      visibility: visible;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0s;
     }
   }
+}
+
+.mobileNavHeader {
+  display: none;
+
+  @include max-lg {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-lg 0;
+    margin-bottom: $spacing-lg;
+    border-bottom: 1px solid rgba($color-white, 0.1);
+  }
+}
+
+.mobileLogo {
+  text-decoration: none;
+}
+
+.mobileLogoText {
+  font-family: $font-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-extrabold;
+  color: $color-white;
+  letter-spacing: -0.03em;
+}
+
+.mobileLogoAccent {
+  color: $color-secondary;
 }
 
 .navList {
@@ -151,10 +184,12 @@
   @include max-lg {
     flex-direction: column;
     align-items: stretch;
-    gap: $spacing-xs;
+    gap: $spacing-sm;
 
-    li.active {
-      background: rgba($color-primary, 0.1);
+    li {
+      &.active {
+        background: rgba($color-primary, 0.2);
+      }
     }
   }
 }
@@ -194,17 +229,21 @@
   }
 
   @include max-lg {
-    color: $color-dark;
-    font-size: $font-size-base;
-    padding: $spacing-sm $spacing-md;
+    color: rgba($color-white, 0.8);
+    font-size: $font-size-lg;
+    padding: $spacing-md $spacing-md;
     border-radius: $border-radius-lg;
 
     &::before {
-      background: rgba($color-primary, 0.08);
+      background: rgba($color-white, 0.1);
     }
 
     &:hover {
-      color: $color-primary;
+      color: $color-white;
+    }
+
+    &.active {
+      color: $color-secondary;
     }
   }
 }
@@ -214,8 +253,9 @@
 
   @include max-lg {
     margin-left: 0;
-    margin-top: $spacing-lg;
-    padding: 0 $spacing-xs;
+    margin-top: auto;
+    padding: $spacing-lg $spacing-xs;
+    border-top: 1px solid rgba($color-white, 0.1);
   }
 }
 

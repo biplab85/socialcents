@@ -8,5 +8,6 @@ export { AppPreview } from './AppPreview';
 export { Partners } from './Partners';
 export { Team } from './Team';
 export { Testimonials } from './Testimonials';
+export { FAQ } from './FAQ';
 export { CTA } from './CTA';
 export { Contact } from './Contact';

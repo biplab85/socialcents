@@ -50,10 +50,14 @@ export function Header() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+
+    // Small delay to let menu close before scrolling
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 300);
   };
 
   return (
@@ -67,6 +71,13 @@ export function Header() {
           </a>
 
           <nav className={`${styles.nav} ${isMobileMenuOpen ? styles.open : ''}`}>
+            <div className={styles.mobileNavHeader}>
+              <a href="/" className={styles.mobileLogo}>
+                <span className={styles.mobileLogoText}>
+                  Social<span className={styles.mobileLogoAccent}>Cents</span>
+                </span>
+              </a>
+            </div>
             <ul className={styles.navList}>
               {navigation.map((item) => (
                 <li key={item.href} className={activeSection === item.href.replace('#', '') ? styles.active : ''}>

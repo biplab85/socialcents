@@ -311,6 +311,37 @@ export const teamContent = {
   ],
 };
 
+export const faqContent = {
+  badge: 'Got Questions?',
+  title: 'Frequently Asked Questions',
+  questions: [
+    {
+      question: 'Is this actually legal?',
+      answer: '100% legal! Brands pay for marketing, and we redirect that payment to you — the people actually doing the marketing. It\'s influencer economics, democratized.',
+    },
+    {
+      question: 'Do I need exactly 1,000 followers?',
+      answer: '1,000 is the minimum. Whether you have 1K or 100K, you can earn with Social Cents. More engagement = more cashback potential.',
+    },
+    {
+      question: 'What kind of posts qualify?',
+      answer: 'Instagram feed posts, Stories, and Reels. Just tag the brand, use #socialcents, and you\'re good. Posts must be public and stay up for 30 days.',
+    },
+    {
+      question: 'How fast do I get my cashback?',
+      answer: 'Within 24-48 hours of your post being verified. No waiting months like traditional programs. Your money, fast.',
+    },
+    {
+      question: 'What brands can I shop at?',
+      answer: 'We\'re partnered with 200+ brands across fashion, beauty, food, tech, and lifestyle. Check the app for the full list — it\'s always growing.',
+    },
+    {
+      question: 'Are there any fees?',
+      answer: 'Zero annual fees. No hidden costs. You keep what you earn — that\'s the Social Cents promise.',
+    },
+  ],
+};
+
 export const ctaContent = {
   title: 'Ready to Turn Your Influence Into Income?',
   subtitle: '1000+ followers on Instagram is all you need',

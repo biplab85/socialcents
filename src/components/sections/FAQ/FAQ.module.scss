@@ -1,0 +1,313 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.faq {
+  position: relative;
+  padding: $spacing-4xl 0;
+  background: linear-gradient(180deg, $color-white 0%, $color-light 50%, $color-white 100%);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($color-primary, 0.2), transparent);
+  }
+}
+
+.backgroundElements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.glowOrb1,
+.glowOrb2 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.5;
+}
+
+.glowOrb1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba($color-primary, 0.08) 0%, transparent 70%);
+  top: -150px;
+  left: -150px;
+}
+
+.glowOrb2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba($color-secondary, 0.06) 0%, transparent 70%);
+  bottom: -100px;
+  right: -100px;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  margin-top: $spacing-3xl;
+}
+
+.accordionItem {
+  background: $color-white;
+  border: 1px solid rgba($color-gray-light, 0.3);
+  border-radius: $border-radius-xl;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.02),
+    0 2px 4px rgba(0, 0, 0, 0.02);
+
+  &:hover {
+    border-color: rgba($color-primary, 0.2);
+    box-shadow:
+      0 4px 12px rgba($color-primary, 0.06),
+      0 2px 4px rgba(0, 0, 0, 0.02);
+  }
+
+  &.open {
+    border-color: rgba($color-primary, 0.3);
+    box-shadow:
+      0 8px 24px rgba($color-primary, 0.1),
+      0 4px 8px rgba(0, 0, 0, 0.04);
+
+    .accordionHeader {
+      background: linear-gradient(135deg, rgba($color-primary, 0.04) 0%, rgba($color-secondary, 0.02) 100%);
+    }
+
+    .questionNumber {
+      background: $gradient-primary;
+      color: $color-white;
+    }
+
+    .questionText {
+      color: $color-dark;
+    }
+
+    .accordionIcon {
+      background: $gradient-primary;
+      color: $color-white;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba($color-primary, 0.3);
+      transform: scale(1);
+
+      svg {
+        transform: rotate(-180deg);
+      }
+    }
+
+    .accordionHeader:hover .accordionIcon {
+      background: $gradient-primary;
+      transform: scale(1.05);
+    }
+
+    .accordionBody {
+      max-height: 300px;
+      opacity: 1;
+    }
+  }
+}
+
+.accordionHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  width: 100%;
+  padding: $spacing-lg $spacing-xl;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+
+  &:hover {
+    .accordionIcon {
+      background: linear-gradient(135deg, rgba($color-primary, 0.15) 0%, rgba($color-secondary, 0.1) 100%);
+      border-color: rgba($color-primary, 0.2);
+      transform: scale(1.05);
+    }
+  }
+
+  @include max-sm {
+    padding: $spacing-md;
+    gap: $spacing-sm;
+  }
+}
+
+.questionNumber {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba($color-primary, 0.08);
+  color: $color-primary;
+  font-family: $font-heading;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  border-radius: $border-radius-lg;
+  transition: all 0.3s ease;
+
+  @include max-sm {
+    width: 36px;
+    height: 36px;
+    font-size: $font-size-xs;
+  }
+}
+
+.questionText {
+  flex: 1;
+  font-family: $font-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-dark;
+  line-height: $line-height-snug;
+  transition: color 0.3s ease;
+
+  @include max-sm {
+    font-size: $font-size-base;
+  }
+}
+
+.accordionIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, rgba($color-primary, 0.08) 0%, rgba($color-secondary, 0.05) 100%);
+  color: $color-primary;
+  border: 1px solid rgba($color-primary, 0.1);
+  border-radius: $border-radius-lg;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  svg {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @include max-sm {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.accordionBody {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.answerContent {
+  padding: 0 $spacing-xl $spacing-xl;
+  padding-left: calc($spacing-xl + 40px + $spacing-md);
+
+  p {
+    font-size: $font-size-base;
+    color: $color-gray;
+    line-height: $line-height-loose;
+    margin: 0;
+  }
+
+  @include max-sm {
+    padding: 0 $spacing-md $spacing-md;
+    padding-left: $spacing-md;
+
+    p {
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+.stillQuestions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-lg;
+  margin-top: $spacing-3xl;
+  padding: $spacing-xl $spacing-2xl;
+  background: linear-gradient(135deg, $color-dark 0%, $color-dark-light 100%);
+  border-radius: $border-radius-2xl;
+  box-shadow:
+    0 8px 32px rgba($color-dark, 0.2),
+    0 4px 16px rgba($color-primary, 0.1);
+
+  @include max-md {
+    flex-direction: column;
+    text-align: center;
+    padding: $spacing-xl;
+  }
+}
+
+.stillQuestionsContent {
+  h3 {
+    font-family: $font-heading;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+    margin: 0 0 $spacing-xs;
+
+    @include max-sm {
+      font-size: $font-size-lg;
+    }
+  }
+
+  p {
+    font-size: $font-size-sm;
+    color: rgba($color-white, 0.7);
+    margin: 0;
+    line-height: $line-height-relaxed;
+  }
+}
+
+.contactBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-lg;
+  background: $gradient-primary;
+  color: $color-white;
+  font-family: $font-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  text-decoration: none;
+  border-radius: $border-radius-full;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba($color-primary, 0.3);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba($color-primary, 0.4);
+
+    svg {
+      transform: translateX(4px);
+    }
+  }
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+
+  @include max-sm {
+    width: 100%;
+    justify-content: center;
+  }
+}

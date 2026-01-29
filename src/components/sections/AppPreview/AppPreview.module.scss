@@ -35,11 +35,11 @@
   position: relative;
   width: 100%;
   margin-top: $spacing-2xl;
-  padding: $spacing-lg 0 $spacing-2xl;
+  padding: 0;
 
   @include md {
     margin-top: $spacing-3xl;
-    padding: $spacing-xl 0 $spacing-3xl;
+    padding: 0;
   }
 }
 
