@@ -1,0 +1,19 @@
+@use '@/styles/variables' as *;
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+
+  &.default {
+    max-width: $container-max-width;
+  }
+
+  &.narrow {
+    max-width: 960px;
+  }
+
+  &.wide {
+    max-width: 1440px;
+  }
+}

@@ -1,0 +1,234 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.about {
+  position: relative;
+  padding: $spacing-4xl 0;
+  background: linear-gradient(180deg, $color-white 0%, $color-light 50%, $color-white 100%);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($color-primary, 0.3), transparent);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($color-primary, 0.2), transparent);
+  }
+}
+
+.backgroundElements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.glowOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.6;
+
+  &:nth-child(1) {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba($color-primary, 0.08) 0%, transparent 70%);
+    top: -150px;
+    right: -100px;
+  }
+
+  &:nth-child(2) {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba($color-secondary, 0.06) 0%, transparent 70%);
+    bottom: -100px;
+    left: -100px;
+  }
+
+  &:nth-child(3) {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba($color-accent, 0.05) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-3xl;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-md;
+  margin-bottom: $spacing-md;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  background: linear-gradient(135deg, rgba($color-primary, 0.1) 0%, rgba($color-secondary, 0.08) 100%);
+  border: 1px solid rgba($color-primary, 0.15);
+  border-radius: $border-radius-full;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: clamp($font-size-3xl, 4vw, $font-size-5xl);
+  font-weight: $font-weight-extrabold;
+  color: $color-dark;
+  line-height: $line-height-tight;
+  margin-bottom: $spacing-md;
+  letter-spacing: -0.02em;
+}
+
+.titleHighlight {
+  background: $gradient-primary;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.description {
+  font-size: $font-size-lg;
+  color: $color-gray;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: $line-height-relaxed;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include lg {
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-lg;
+  }
+}
+
+.card {
+  position: relative;
+  padding: $spacing-lg;
+  background: $color-white;
+  border: 1px solid rgba($color-gray-light, 0.3);
+  border-radius: $border-radius-xl;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  height: 100%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: $gradient-primary;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+    border-color: rgba($color-primary, 0.2);
+    box-shadow: 0 20px 40px rgba($color-primary, 0.12), 0 8px 16px rgba(0, 0, 0, 0.06);
+
+    &::before {
+      transform: scaleX(1);
+    }
+
+    .iconWrapper {
+      background: $gradient-primary;
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba($color-primary, 0.3);
+
+      svg {
+        color: $color-white;
+      }
+    }
+
+    .cardNumber {
+      color: rgba($color-primary, 0.3);
+    }
+  }
+}
+
+.cardContent {
+  position: relative;
+  z-index: 1;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, rgba($color-primary, 0.1) 0%, rgba($color-secondary, 0.08) 100%);
+  border-radius: $border-radius-lg;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  svg {
+    color: $color-primary;
+    transition: color 0.3s ease;
+  }
+}
+
+.cardNumber {
+  font-family: $font-heading;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  color: rgba($color-gray-light, 0.5);
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.cardTitle {
+  font-family: $font-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-dark;
+  margin-bottom: $spacing-xs;
+}
+
+.cardDescription {
+  font-size: $font-size-sm;
+  color: $color-gray;
+  line-height: $line-height-relaxed;
+}

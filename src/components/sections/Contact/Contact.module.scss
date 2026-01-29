@@ -1,0 +1,179 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.contact {
+  @include section-padding;
+  position: relative;
+  background: linear-gradient(180deg, $color-light 0%, $color-white 100%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba($color-primary, 0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, rgba($color-secondary, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($color-gray-light, 0.5), transparent);
+  }
+}
+
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-2xl;
+
+  @include lg {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.formWrapper {
+  @include card;
+  padding: $spacing-xl;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.formGroup {
+  width: 100%;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  color: $color-dark;
+  background: $color-light;
+  border: 2px solid transparent;
+  border-radius: $border-radius-lg;
+  transition: all $transition-base;
+
+  &::placeholder {
+    color: $color-gray-light;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    background: $color-white;
+    box-shadow: 0 0 0 4px rgba($color-primary, 0.1);
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.infoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.infoCards {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.infoCard {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $color-light;
+  border-radius: $border-radius-lg;
+  text-decoration: none;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $color-white;
+    box-shadow: $shadow-md;
+    transform: translateX(8px);
+
+    .infoIcon {
+      background: $gradient-primary;
+      color: $color-white;
+    }
+  }
+}
+
+.infoIcon {
+  @include flex-center;
+  width: 50px;
+  height: 50px;
+  background: rgba($color-primary, 0.1);
+  color: $color-primary;
+  border-radius: $border-radius-lg;
+  flex-shrink: 0;
+  transition: all $transition-base;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoLabel {
+  font-size: $font-size-sm;
+  color: $color-gray;
+}
+
+.infoValue {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-dark;
+}
+
+.social {
+  padding: $spacing-lg;
+  background: $color-dark;
+  border-radius: $border-radius-xl;
+}
+
+.socialTitle {
+  font-family: $font-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-white;
+  margin-bottom: $spacing-md;
+}
+
+.socialLinks {
+  display: flex;
+  gap: $spacing-sm;
+
+  a {
+    @include flex-center;
+    width: 44px;
+    height: 44px;
+    background: rgba($color-white, 0.1);
+    color: $color-white;
+    border-radius: $border-radius-lg;
+    transition: all $transition-base;
+
+    &:hover {
+      background: $color-primary;
+      transform: translateY(-4px);
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.sectionTitle {
+  margin-bottom: $spacing-2xl;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.left {
+    text-align: left;
+  }
+
+  &.center {
+    text-align: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &.right {
+    text-align: right;
+  }
+
+  // Light variant for dark backgrounds
+  &.light {
+    .title {
+      color: $color-white;
+    }
+
+    .description {
+      color: rgba($color-white, 0.7);
+    }
+
+    .badge {
+      background: rgba($color-white, 0.08);
+      border: 1px solid rgba($color-white, 0.15);
+      color: $color-secondary;
+    }
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: $spacing-xs $spacing-md;
+  margin-bottom: $spacing-md;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  background: linear-gradient(135deg, rgba($color-primary, 0.1) 0%, rgba($color-secondary, 0.08) 100%);
+  border: 1px solid rgba($color-primary, 0.15);
+  border-radius: $border-radius-full;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.title {
+  @include heading-style;
+  font-size: clamp($font-size-3xl, 4vw, $font-size-4xl);
+  margin-bottom: $spacing-sm;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  font-size: $font-size-lg;
+  color: $color-gray;
+  line-height: $line-height-relaxed;
+  max-width: 600px;
+
+  .center & {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

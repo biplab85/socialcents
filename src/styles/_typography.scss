@@ -1,0 +1,225 @@
+// ========================================
+// SocialCents Typography Styles
+// ========================================
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Base Typography
+body {
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-normal;
+  color: $color-gray;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  @include heading-style;
+  margin-bottom: $spacing-sm;
+}
+
+h1, .h1 {
+  font-size: $font-size-4xl;
+
+  @include md {
+    font-size: $font-size-5xl;
+  }
+
+  @include lg {
+    font-size: $font-size-6xl;
+  }
+}
+
+h2, .h2 {
+  font-size: $font-size-3xl;
+
+  @include md {
+    font-size: $font-size-4xl;
+  }
+}
+
+h3, .h3 {
+  font-size: $font-size-2xl;
+
+  @include md {
+    font-size: $font-size-3xl;
+  }
+}
+
+h4, .h4 {
+  font-size: $font-size-xl;
+
+  @include md {
+    font-size: $font-size-2xl;
+  }
+}
+
+h5, .h5 {
+  font-size: $font-size-lg;
+
+  @include md {
+    font-size: $font-size-xl;
+  }
+}
+
+h6, .h6 {
+  font-size: $font-size-base;
+
+  @include md {
+    font-size: $font-size-lg;
+  }
+}
+
+// Paragraphs
+p {
+  margin-bottom: $spacing-sm;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Links
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: darken($color-primary, 10%);
+  }
+}
+
+// Lists
+ul, ol {
+  margin-bottom: $spacing-sm;
+  padding-left: $spacing-lg;
+}
+
+li {
+  margin-bottom: $spacing-xs;
+}
+
+// Small text
+small, .text-sm {
+  font-size: $font-size-sm;
+}
+
+.text-xs {
+  font-size: $font-size-xs;
+}
+
+.text-lg {
+  font-size: $font-size-lg;
+}
+
+.text-xl {
+  font-size: $font-size-xl;
+}
+
+// Text colors
+.text-primary {
+  color: $color-primary;
+}
+
+.text-secondary {
+  color: $color-secondary;
+}
+
+.text-accent {
+  color: $color-accent;
+}
+
+.text-dark {
+  color: $color-dark;
+}
+
+.text-gray {
+  color: $color-gray;
+}
+
+.text-light {
+  color: $color-gray-light;
+}
+
+.text-white {
+  color: $color-white;
+}
+
+// Text alignment
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+// Font weights
+.font-light {
+  font-weight: $font-weight-light;
+}
+
+.font-normal {
+  font-weight: $font-weight-normal;
+}
+
+.font-medium {
+  font-weight: $font-weight-medium;
+}
+
+.font-semibold {
+  font-weight: $font-weight-semibold;
+}
+
+.font-bold {
+  font-weight: $font-weight-bold;
+}
+
+// Gradient text
+.text-gradient {
+  @include text-gradient;
+}
+
+.text-gradient-accent {
+  @include text-gradient($gradient-accent);
+}
+
+// Lead paragraph
+.lead {
+  font-size: $font-size-lg;
+  line-height: $line-height-relaxed;
+  color: $color-gray;
+
+  @include md {
+    font-size: $font-size-xl;
+  }
+}
+
+// Caption
+.caption {
+  font-size: $font-size-sm;
+  color: $color-gray-light;
+  font-weight: $font-weight-medium;
+}
+
+// Uppercase
+.uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+// Selection
+::selection {
+  background: rgba($color-primary, 0.2);
+  color: $color-dark;
+}

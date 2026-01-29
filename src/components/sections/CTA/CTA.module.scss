@@ -1,0 +1,120 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.cta {
+  position: relative;
+  padding: $spacing-3xl 0;
+  overflow: hidden;
+
+  @include md {
+    padding: $spacing-4xl 0;
+  }
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  background: $gradient-primary;
+  z-index: -1;
+}
+
+.shape1 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: rgba($color-white, 0.1);
+  top: -200px;
+  right: -100px;
+  animation: float 8s ease-in-out infinite;
+}
+
+.shape2 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba($color-accent, 0.2);
+  bottom: -150px;
+  left: -50px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+.shape3 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  background: rgba($color-secondary, 0.15);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: morph 15s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(20px, -20px);
+  }
+}
+
+@keyframes morph {
+  0%, 100% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  25% {
+    border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+  }
+  50% {
+    border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+  }
+  75% {
+    border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+  }
+}
+
+.content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  line-height: $line-height-tight;
+  margin-bottom: $spacing-sm;
+
+  @include md {
+    font-size: $font-size-4xl;
+  }
+}
+
+.subtitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-secondary;
+  margin-bottom: $spacing-sm;
+
+  @include md {
+    font-size: $font-size-xl;
+  }
+}
+
+.description {
+  font-size: $font-size-base;
+  color: rgba($color-white, 0.8);
+  line-height: $line-height-relaxed;
+  margin-bottom: $spacing-lg;
+
+  @include md {
+    font-size: $font-size-lg;
+  }
+}

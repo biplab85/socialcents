@@ -1,0 +1,425 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.howItWorks {
+  @include section-padding;
+  position: relative;
+  overflow: hidden;
+  //background: linear-gradient(180deg, $color-white 0%, #f8f9ff 50%, $color-white 100%);
+  background: linear-gradient(180deg, #1a1a2e 0%, #323335 50%, #1a1a2e 100%)
+}
+
+// Animated Background
+.animatedBackground {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bgGradientOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+
+  &:nth-child(1) {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba($color-primary, 0.15) 0%, transparent 70%);
+    top: -150px;
+    left: -100px;
+    animation: floatOrb 20s ease-in-out infinite;
+  }
+
+  &:nth-child(2) {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba($color-secondary, 0.12) 0%, transparent 70%);
+    bottom: -100px;
+    right: -50px;
+    animation: floatOrb 18s ease-in-out infinite reverse;
+  }
+
+  &:nth-child(3) {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba($color-accent, 0.1) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: floatOrb 22s ease-in-out infinite;
+  }
+}
+
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba($color-primary, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba($color-primary, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+}
+
+.bgFloatingShapes {
+  position: absolute;
+  inset: 0;
+}
+
+.floatingShape {
+  position: absolute;
+  border-radius: 50%;
+  background: $gradient-primary;
+  opacity: 0.08;
+
+  &:nth-child(1) {
+    width: 18px;
+    height: 18px;
+    top: 20%;
+    left: 10%;
+    animation: floatParticle 15s linear infinite;
+  }
+
+  &:nth-child(2) {
+    width: 16px;
+    height: 16px;
+    top: 60%;
+    left: 20%;
+    animation: floatParticle 18s linear infinite reverse;
+  }
+
+  &:nth-child(3) {
+    width: 20px;
+    height: 20px;
+    top: 30%;
+    right: 15%;
+    animation: floatParticle 20s linear infinite;
+  }
+
+  &:nth-child(4) {
+    width: 15px;
+    height: 15px;
+    top: 70%;
+    right: 25%;
+    animation: floatParticle 16s linear infinite reverse;
+  }
+
+  &:nth-child(5) {
+    width: 17px;
+    height: 17px;
+    top: 45%;
+    left: 40%;
+    animation: floatParticle 22s linear infinite;
+  }
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -20px) scale(1.05);
+  }
+  50% {
+    transform: translate(-20px, 30px) scale(0.95);
+  }
+  75% {
+    transform: translate(-30px, -10px) scale(1.02);
+  }
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.08;
+  }
+  90% {
+    opacity: 0.08;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(50px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+// Content wrapper
+.contentWrapper {
+  position: relative;
+  z-index: 1;
+}
+
+// Section divider lines
+.sectionDivider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba($color-primary, 0.15), transparent);
+
+  &.top {
+    top: 0;
+  }
+
+  &.bottom {
+    bottom: 0;
+  }
+}
+
+// Steps Container
+.stepsContainer {
+  position: relative;
+  margin-top: $spacing-xl;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+  position: relative;
+
+  @include lg {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+  }
+}
+
+.stepWrapper {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+
+  @include lg {
+    padding: 0 $spacing-xs;
+  }
+}
+
+// Step Card
+.step {
+  position: relative;
+  flex: 1;
+  text-align: center;
+  padding: $spacing-2xl $spacing-lg $spacing-xl;
+  background: linear-gradient(145deg, rgba(30, 30, 50, 0.9) 0%, rgba(20, 20, 35, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba($color-primary, 0.2);
+  border-radius: $border-radius-2xl;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba($color-white, 0.05) inset;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba($color-primary, 0.1) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba($color-primary, 0.4);
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.4),
+      0 0 30px rgba($color-primary, 0.15),
+      0 0 0 1px rgba($color-primary, 0.3) inset;
+
+    &::after {
+      opacity: 1;
+    }
+
+    .stepIconWrapper {
+      background: $gradient-primary;
+      color: $color-white;
+      transform: scale(1.1);
+      box-shadow:
+        0 8px 24px rgba($color-primary, 0.4),
+        0 0 20px rgba($color-secondary, 0.3);
+    }
+
+    .stepNumber {
+      color: rgba($color-primary, 0.3);
+      text-shadow: 0 0 30px rgba($color-primary, 0.3);
+    }
+
+    .stepTitle {
+      color: $color-white;
+    }
+  }
+}
+
+.stepNumber {
+  position: absolute;
+  top: $spacing-sm;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: $font-heading;
+  font-size: $font-size-6xl;
+  font-weight: $font-weight-extrabold;
+  color: rgba($color-white, 0.08);
+  line-height: 1;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+
+  @include lg {
+    font-size: 5rem;
+  }
+}
+
+.stepIconWrapper {
+  @include flex-center;
+  width: 80px;
+  height: 80px;
+  margin: $spacing-lg auto $spacing-md;
+  background: linear-gradient(135deg, rgba($color-primary, 0.15) 0%, rgba($color-secondary, 0.1) 100%);
+  color: $color-secondary;
+  border-radius: $border-radius-full;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba($color-primary, 0.2);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: $border-radius-full;
+    border: 1px dashed rgba($color-secondary, 0.3);
+    animation: rotateBorder 25s linear infinite;
+  }
+}
+
+@keyframes rotateBorder {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.stepTitle {
+  font-family: $font-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: rgba($color-white, 0.95);
+  margin-bottom: $spacing-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color 0.3s ease;
+}
+
+.stepSubtitle {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-secondary;
+  margin-bottom: $spacing-sm;
+}
+
+.stepDescription {
+  font-size: $font-size-sm;
+  color: rgba($color-white, 0.6);
+  line-height: $line-height-relaxed;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+// SVG Arrow Connector
+.arrowConnector {
+  display: none;
+
+  @include lg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    min-width: 80px;
+    position: relative;
+    margin: 0 -$spacing-xs;
+    z-index: 2;
+  }
+}
+
+.arrowSvg {
+  width: 100%;
+  height: 60px;
+  overflow: visible;
+}
+
+.arrowPath {
+  stroke-dasharray: 8 4;
+  animation: flowArrow 1s linear infinite;
+}
+
+@keyframes flowArrow {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.arrowHead {
+  filter: drop-shadow(0 2px 4px rgba($color-primary, 0.3));
+}
+
+.arrowGlow {
+  filter: blur(8px);
+  opacity: 0.5;
+}
+
+// Pulse dots at arrow ends
+.arrowPulse {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 1;
+    r: 4;
+  }
+  50% {
+    opacity: 0.6;
+    r: 6;
+  }
+}
+
+// Mobile Arrow (vertical)
+.mobileArrow {
+  display: flex;
+  justify-content: center;
+  padding: $spacing-sm 0;
+
+  @include lg {
+    display: none;
+  }
+}
+
+.mobileArrowSvg {
+  width: 40px;
+  height: 50px;
+}
+
+.mobileArrowPath {
+  stroke-dasharray: 6 3;
+  animation: flowArrowDown 1s linear infinite;
+}
+
+@keyframes flowArrowDown {
+  from {
+    stroke-dashoffset: 18;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}

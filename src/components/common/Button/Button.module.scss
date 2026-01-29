@@ -1,0 +1,106 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  font-family: $font-primary;
+  font-weight: $font-weight-semibold;
+  text-decoration: none;
+  border: none;
+  border-radius: $border-radius-full;
+  cursor: pointer;
+  transition: all $transition-base;
+  white-space: nowrap;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  // Sizes
+  &.sm {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-sm;
+  }
+
+  &.md {
+    padding: 0.875rem $spacing-lg;
+    font-size: $font-size-base;
+  }
+
+  &.lg {
+    padding: $spacing-sm $spacing-xl;
+    font-size: $font-size-lg;
+  }
+
+  // Full width
+  &.fullWidth {
+    width: 100%;
+  }
+}
+
+// Primary variant
+.primary {
+  background: $gradient-primary;
+  color: $color-white;
+  box-shadow: $shadow-md;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg, $shadow-glow;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+// Secondary variant
+.secondary {
+  background: transparent;
+  color: $color-primary;
+  border: 2px solid $color-primary;
+
+  &:hover:not(:disabled) {
+    background: $color-primary;
+    color: $color-white;
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+// Ghost variant (for dark backgrounds)
+.ghost {
+  background: transparent;
+  color: $color-white;
+  border: 2px solid rgba($color-white, 0.3);
+
+  &:hover:not(:disabled) {
+    background: rgba($color-white, 0.1);
+    border-color: $color-white;
+  }
+}
+
+// Outline variant
+.outline {
+  background: transparent;
+  color: $color-dark;
+  border: 2px solid rgba($color-dark, 0.2);
+
+  &:hover:not(:disabled) {
+    border-color: $color-primary;
+    color: $color-primary;
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}

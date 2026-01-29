@@ -1,0 +1,12 @@
+export { Hero } from './Hero';
+export { About } from './About';
+export { HowItWorks } from './HowItWorks';
+export { Features } from './Features';
+export { Stats } from './Stats';
+export { Gallery } from './Gallery';
+export { AppPreview } from './AppPreview';
+export { Partners } from './Partners';
+export { Team } from './Team';
+export { Testimonials } from './Testimonials';
+export { CTA } from './CTA';
+export { Contact } from './Contact';
