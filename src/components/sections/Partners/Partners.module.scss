@@ -12,137 +12,241 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 20% 30%, rgba($color-primary, 0.12) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 70%, rgba($color-secondary, 0.08) 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 30%, rgba($color-primary, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba($color-secondary, 0.06) 0%, transparent 50%);
     pointer-events: none;
   }
+}
 
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+// Marquee Container
+.marqueeWrapper {
+  position: relative;
+  margin-top: $spacing-2xl;
+  padding: $spacing-lg 0;
+
+  // Fade edges
+  &::before,
   &::after {
     content: '';
     position: absolute;
     top: 0;
+    bottom: 0;
+    width: 150px;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  &::before {
     left: 0;
+    background: linear-gradient(90deg, $color-dark 0%, transparent 100%);
+  }
+
+  &::after {
     right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba($color-primary, 0.4), transparent);
+    background: linear-gradient(-90deg, $color-dark 0%, transparent 100%);
   }
 }
 
-.gridWrapper {
-  position: relative;
-  z-index: 1;
-  margin-top: $spacing-2xl;
-}
+.marqueeTrack {
+  display: flex;
+  gap: $spacing-lg;
+  width: max-content;
+  animation: marquee 35s linear infinite;
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: $spacing-md;
-
-  @include sm {
-    grid-template-columns: repeat(3, 1fr);
+  &:hover {
+    animation-play-state: paused;
   }
 
   @include md {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  @include lg {
-    grid-template-columns: repeat(5, 1fr);
-    gap: $spacing-lg;
+    gap: $spacing-xl;
   }
 }
 
+.marqueeTrackReverse {
+  animation-direction: reverse;
+  animation-duration: 40s;
+  margin-top: $spacing-lg;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+// Partner Card - Modern 3D Glass
 .partnerCard {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100px;
-  padding: $spacing-md;
-  background: rgba($color-white, 0.03);
-  border: 1px solid rgba($color-white, 0.08);
+  min-width: 160px;
+  height: 90px;
+  padding: $spacing-md $spacing-lg;
+  background: linear-gradient(
+    145deg,
+    rgba($color-white, 0.08) 0%,
+    rgba($color-white, 0.02) 100%
+  );
+  border: 1px solid rgba($color-white, 0.1);
   border-radius: $border-radius-xl;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  cursor: pointer;
+  transform-style: preserve-3d;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
 
+  // Inner glow
   &::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba($color-primary, 0.05) 0%, transparent 50%);
+    inset: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      145deg,
+      rgba($color-white, 0.05) 0%,
+      transparent 50%
+    );
     opacity: 0;
     transition: opacity 0.4s ease;
   }
 
+  // Bottom accent line
   &::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: -1px;
+    left: 20%;
+    right: 20%;
     height: 2px;
     background: $gradient-primary;
+    border-radius: 2px;
+    opacity: 0;
     transform: scaleX(0);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &:hover {
-    transform: translateY(-6px);
-    border-color: rgba($color-primary, 0.3);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 40px rgba($color-primary, 0.1);
+    transform: translateY(-8px) rotateX(5deg) scale(1.05);
+    border-color: rgba($color-primary, 0.4);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      0 0 60px rgba($color-primary, 0.15),
+      inset 0 1px 0 rgba($color-white, 0.1);
 
     &::before {
       opacity: 1;
     }
 
     &::after {
+      opacity: 1;
       transform: scaleX(1);
     }
 
     .partnerName {
       color: $color-white;
+      text-shadow: 0 0 20px rgba($color-primary, 0.5);
     }
 
-    .partnerIcon {
-      transform: scale(1.1);
-      color: $color-primary;
+    .partnerGlow {
+      opacity: 1;
     }
   }
 
+  @include md {
+    min-width: 180px;
+    height: 100px;
+  }
+
   @include lg {
+    min-width: 200px;
     height: 110px;
   }
 }
 
-.partnerContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: $spacing-xs;
-}
-
-.partnerIcon {
-  color: rgba($color-white, 0.3);
-  transition: all 0.4s ease;
+// Glow effect behind card
+.partnerGlow {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba($color-primary, 0.2) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+  filter: blur(20px);
 }
 
 .partnerName {
   font-family: $font-heading;
   font-size: $font-size-lg;
   font-weight: $font-weight-bold;
-  color: rgba($color-white, 0.6);
+  color: rgba($color-white, 0.7);
   text-align: center;
+  letter-spacing: 0.02em;
   transition: all 0.4s ease;
-  letter-spacing: -0.01em;
+  user-select: none;
+
+  @include md {
+    font-size: $font-size-xl;
+  }
 
   @include lg {
-    font-size: $font-size-xl;
+    font-size: $font-size-2xl;
   }
 }
 
+// Stats row
+.statsRow {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-xl;
+  margin-top: $spacing-2xl;
+  padding-top: $spacing-xl;
+  border-top: 1px solid rgba($color-white, 0.08);
+
+  @include md {
+    gap: $spacing-3xl;
+  }
+}
+
+.stat {
+  text-align: center;
+}
+
+.statValue {
+  display: block;
+  font-family: $font-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  background: $gradient-primary;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  @include md {
+    font-size: $font-size-3xl;
+  }
+}
+
+.statLabel {
+  font-size: $font-size-sm;
+  color: rgba($color-white, 0.5);
+  margin-top: $spacing-xs;
+}
+
+// View all button
 .viewAll {
   display: flex;
   justify-content: center;
@@ -150,30 +254,58 @@
 }
 
 .viewAllBtn {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: $spacing-xs;
-  padding: $spacing-sm $spacing-lg;
-  font-size: $font-size-sm;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-xl;
+  font-size: $font-size-base;
   font-weight: $font-weight-semibold;
   color: $color-white;
-  background: transparent;
-  border: 1px solid rgba($color-white, 0.2);
+  background: linear-gradient(
+    135deg,
+    rgba($color-primary, 0.2) 0%,
+    rgba($color-secondary, 0.1) 100%
+  );
+  border: 1px solid rgba($color-primary, 0.3);
   border-radius: $border-radius-full;
   cursor: pointer;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover {
-    background: rgba($color-white, 0.1);
-    border-color: rgba($color-white, 0.4);
-    transform: translateY(-2px);
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: $gradient-primary;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
 
-    svg {
-      transform: translateX(4px);
-    }
+  span {
+    position: relative;
+    z-index: 1;
   }
 
   svg {
-    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: transparent;
+    box-shadow:
+      0 10px 30px rgba($color-primary, 0.3),
+      0 0 40px rgba($color-primary, 0.2);
+
+    &::before {
+      opacity: 1;
+    }
+
+    svg {
+      transform: translateX(6px);
+    }
   }
 }

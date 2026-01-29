@@ -9,12 +9,12 @@ import styles from './Team.module.scss';
 export function Team() {
   return (
     <section id="team" className={styles.team}>
-      {/* Hero-style Background */}
+      {/* Unique Background - Mesh Gradient with Patterns */}
       <div className={styles.background}>
-        <div className={styles.gradientOrb1} />
-        <div className={styles.gradientOrb2} />
-        <div className={styles.gradientOrb3} />
-        <div className={styles.grid} />
+        <div className={styles.diagonalPattern} />
+        <div className={styles.cornerGlow1} />
+        <div className={styles.cornerGlow2} />
+        <div className={styles.dotPattern} />
       </div>
 
       <div className={styles.contentWrapper}>

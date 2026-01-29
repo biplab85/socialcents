@@ -25,10 +25,10 @@ export default function Home() {
         <Features />
         <Stats />
         <AppPreview />
-        <Partners />
         <Team />
         <Testimonials />
         <FAQ />
+        <Partners />
         <CTA />
         <Contact />
       </main>
