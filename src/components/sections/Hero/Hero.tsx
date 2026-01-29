@@ -27,7 +27,6 @@ export function Hero() {
               )).reduce((prev, curr, i) => i === 0 ? [curr] : [...prev, ' ', curr], [] as React.ReactNode[])}
             </h1>
             <p className={styles.subtitle}>{heroContent.subtitle}</p>
-            <p className={styles.description}>{heroContent.description}</p>
 
             <div className={styles.ctas}>
               <Button href="#apply" size="lg">

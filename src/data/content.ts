@@ -30,17 +30,18 @@ export const navigation = [
 ];
 
 export const heroContent = {
-  badge: 'Introducing INfLUX Card',
-  title: 'Your first Social Currency Card',
-  subtitle: 'FUELLED BY LIKES & SHARES & powered by visa',
+  badge: 'Now accepting applications in Canada',
+  title: 'Turn Your Instagram Into a Money Machine',
+  subtitle: 'The first card that pays you up to 100% cashback just for posting about brands you already love. All you need is 1,000 followers.',
   description:
-    'Turn your social influence into real rewards. Shop at partner brands, share your experiences, and earn instant cashback.',
-  ctaPrimary: 'Apply Now',
-  ctaSecondary: 'Learn More',
+    'The first card that pays you up to 100% cashback just for posting about brands you already love. All you need is 1,000 followers.',
+  ctaPrimary: 'Apply For Your Card',
+  ctaSecondary: 'See How It Works',
+  socialProof: '2,500+ creators already earning',
   stats: [
-    { value: '1000+', label: 'Partner Brands' },
-    { value: '50K+', label: 'Active Users' },
-    { value: '$2M+', label: 'Rewards Paid' },
+    { value: '2,500+', label: 'Creators Earning' },
+    { value: '100%', label: 'Max Cashback' },
+    { value: '1,000', label: 'Followers Needed' },
   ],
 };
 

@@ -135,49 +135,81 @@
 
 .card {
   position: relative;
-  padding: $spacing-lg;
-  background: $color-white;
-  border: 1px solid rgba($color-gray-light, 0.3);
-  border-radius: $border-radius-xl;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: $spacing-xl;
+  background: linear-gradient(180deg, $color-white 0%, rgba($color-light, 0.5) 100%);
+  border: 1px solid rgba($color-gray-light, 0.2);
+  border-radius: $border-radius-2xl;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.02),
+    0 4px 8px rgba(0, 0, 0, 0.02),
+    0 8px 16px rgba(0, 0, 0, 0.02);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   height: 100%;
 
+  // Subtle top accent line
   &::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: $gradient-primary;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($color-primary, 0.3), rgba($color-secondary, 0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  // Corner glow effect
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba($color-primary, 0.08) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
   }
 
   &:hover {
-    transform: translateY(-10px);
-    border-color: rgba($color-primary, 0.2);
-    box-shadow: 0 20px 40px rgba($color-primary, 0.12), 0 8px 16px rgba(0, 0, 0, 0.06);
+    transform: translateY(-8px);
+    border-color: rgba($color-primary, 0.15);
+    box-shadow:
+      0 4px 8px rgba($color-primary, 0.04),
+      0 8px 16px rgba($color-primary, 0.06),
+      0 16px 32px rgba($color-primary, 0.08),
+      0 32px 64px rgba(0, 0, 0, 0.04);
 
     &::before {
-      transform: scaleX(1);
+      opacity: 1;
+    }
+
+    &::after {
+      opacity: 1;
     }
 
     .iconWrapper {
       background: $gradient-primary;
-      transform: scale(1.1);
-      box-shadow: 0 10px 30px rgba($color-primary, 0.3);
+      border-color: transparent;
+      box-shadow:
+        0 8px 24px rgba($color-primary, 0.35),
+        0 4px 8px rgba($color-primary, 0.2);
 
       svg {
         color: $color-white;
+        transform: scale(1.1);
       }
     }
 
     .cardNumber {
-      color: rgba($color-primary, 0.3);
+      color: rgba($color-primary, 0.15);
+    }
+
+    .cardTitle {
+      color: $color-primary;
     }
   }
 }
@@ -191,44 +223,52 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: $spacing-md;
+  margin-bottom: $spacing-lg;
 }
 
 .iconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, rgba($color-primary, 0.1) 0%, rgba($color-secondary, 0.08) 100%);
-  border-radius: $border-radius-lg;
+  width: 60px;
+  height: 60px;
+  background: $color-white;
+  border: 1px solid rgba($color-primary, 0.1);
+  border-radius: $border-radius-xl;
+  box-shadow:
+    0 2px 8px rgba($color-primary, 0.06),
+    inset 0 1px 0 rgba($color-white, 1);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   svg {
     color: $color-primary;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
   }
 }
 
 .cardNumber {
   font-family: $font-heading;
-  font-size: $font-size-3xl;
-  font-weight: $font-weight-bold;
-  color: rgba($color-gray-light, 0.5);
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-extrabold;
+  color: rgba($color-gray-light, 0.3);
   line-height: 1;
-  transition: color 0.3s ease;
+  transition: color 0.4s ease;
+  letter-spacing: -0.02em;
 }
 
 .cardTitle {
   font-family: $font-heading;
   font-size: $font-size-xl;
-  font-weight: $font-weight-semibold;
+  font-weight: $font-weight-bold;
   color: $color-dark;
-  margin-bottom: $spacing-xs;
+  margin-bottom: $spacing-sm;
+  transition: color 0.3s ease;
+  letter-spacing: -0.01em;
 }
 
 .cardDescription {
   font-size: $font-size-sm;
   color: $color-gray;
-  line-height: $line-height-relaxed;
+  line-height: $line-height-loose;
+  letter-spacing: 0.01em;
 }
