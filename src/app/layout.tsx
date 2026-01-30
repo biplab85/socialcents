@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
+import { Inter, Poppins, Bruno_Ace_SC } from 'next/font/google';
 import './globals.scss';
 
 const inter = Inter({
@@ -13,6 +13,13 @@ const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700', '800'],
   display: 'swap',
   variable: '--font-poppins',
+});
+
+const brunoAceSC = Bruno_Ace_SC({
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
+  variable: '--font-bruno-ace-sc',
 });
 
 export const metadata: Metadata = {
@@ -55,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable} ${brunoAceSC.variable}`}>
       <body>{children}</body>
     </html>
   );

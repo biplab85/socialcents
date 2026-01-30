@@ -25,7 +25,7 @@
       color: $color-white;
 
       .logoAccent {
-        color: $color-secondary;
+        color: rgb(161, 0, 255);
       }
     }
 
@@ -88,16 +88,17 @@
 }
 
 .logoText {
-  font-family: $font-heading;
+  font-family: var(--font-bruno-ace-sc), sans-serif;
   font-size: $font-size-2xl;
-  font-weight: $font-weight-extrabold;
+  font-weight: 400;
   letter-spacing: -0.03em;
   display: flex;
   align-items: center;
+  color: $color-white;
 }
 
 .logoAccent {
-  color: $color-secondary;
+  color: rgb(161, 0, 255);
   transition: all 0.3s ease;
 }
 
@@ -151,15 +152,15 @@
 }
 
 .mobileLogoText {
-  font-family: $font-heading;
+  font-family: var(--font-bruno-ace-sc), sans-serif;
   font-size: $font-size-xl;
-  font-weight: $font-weight-extrabold;
+  font-weight: 400;
   color: $color-white;
   letter-spacing: -0.03em;
 }
 
 .mobileLogoAccent {
-  color: $color-secondary;
+  color: rgb(161, 0, 255);
 }
 
 .navList {

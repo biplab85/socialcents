@@ -66,7 +66,7 @@ export function Header() {
         <div className={styles.headerInner}>
           <a href="/" className={styles.logo}>
             <span className={styles.logoText}>
-              Social<span className={styles.logoAccent}>Cents</span>
+              <span className={styles.logoAccent}>S</span>ocial<span className={styles.logoAccent}>C</span>ents
             </span>
           </a>
 
@@ -74,7 +74,7 @@ export function Header() {
             <div className={styles.mobileNavHeader}>
               <a href="/" className={styles.mobileLogo}>
                 <span className={styles.mobileLogoText}>
-                  Social<span className={styles.mobileLogoAccent}>Cents</span>
+                  <span className={styles.mobileLogoAccent}>S</span>ocial<span className={styles.mobileLogoAccent}>C</span>ents
                 </span>
               </a>
             </div>

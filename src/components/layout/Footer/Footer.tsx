@@ -12,7 +12,9 @@ export function Footer() {
         <div className={styles.footerTop}>
           <div className={styles.footerBrand}>
             <a href="/" className={styles.logo}>
-              <span className={styles.logoText}>{siteConfig.name}</span>
+              <span className={styles.logoText}>
+                <span className={styles.logoAccent}>S</span>ocial<span className={styles.logoAccent}>C</span>ents
+              </span>
             </a>
             <p className={styles.description}>{footerContent.description}</p>
             <div className={styles.social}>

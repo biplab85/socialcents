@@ -275,10 +275,9 @@
   width: 340px;
   height: 200px;
   border-radius: $border-radius-xl;
-  background: $gradient-primary;
-  padding: 2px;
   transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
   transition: transform $transition-base;
+  overflow: hidden;
 
   &:hover {
     transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
@@ -288,6 +287,11 @@
     width: 280px;
     height: 170px;
   }
+}
+
+.cardImage {
+  object-fit: cover;
+  border-radius: $border-radius-xl;
 }
 
 .cardInner {

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Container, Button, Icon } from '@/components/common';
 import { heroContent, siteConfig } from '@/data/content';
 import styles from './Hero.module.scss';
@@ -51,19 +52,13 @@ export function Hero() {
           <div className={styles.visualContent}>
             <div className={styles.cardWrapper}>
               <div className={styles.card}>
-                <div className={styles.cardInner}>
-                  <div className={styles.cardTop}>
-                    <span className={styles.cardLogo}>{siteConfig.name}</span>
-                    <span className={styles.cardType}>VISA</span>
-                  </div>
-                  <div className={styles.cardMiddle}>
-                    <span className={styles.cardProduct}>{siteConfig.productName}</span>
-                  </div>
-                  <div className={styles.cardBottom}>
-                    <div className={styles.cardChip} />
-                    <span className={styles.cardNumber}>**** **** **** 1234</span>
-                  </div>
-                </div>
+                <Image
+                  src="/images/visa-card/card.png"
+                  alt="SocialCents Visa Card"
+                  fill
+                  className={styles.cardImage}
+                  priority
+                />
               </div>
               <div className={styles.cardGlow} />
             </div>

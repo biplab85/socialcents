@@ -54,10 +54,15 @@
 }
 
 .logoText {
-  font-family: $font-heading;
+  font-family: var(--font-bruno-ace-sc), sans-serif;
   font-size: $font-size-2xl;
-  font-weight: $font-weight-bold;
+  font-weight: 400;
   letter-spacing: -0.02em;
+  color: $color-white;
+}
+
+.logoAccent {
+  color: rgb(161, 0, 255);
 }
 
 .description {
