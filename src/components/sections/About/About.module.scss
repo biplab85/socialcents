@@ -136,82 +136,80 @@
 .card {
   position: relative;
   padding: $spacing-xl;
-  background: linear-gradient(180deg, $color-white 0%, rgba($color-light, 0.5) 100%);
-  border: 1px solid rgba($color-gray-light, 0.2);
   border-radius: $border-radius-2xl;
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.02),
-    0 4px 8px rgba(0, 0, 0, 0.02),
-    0 8px 16px rgba(0, 0, 0, 0.02);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   height: 100%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-  // Subtle top accent line
+  // Shimmer overlay effect
   &::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba($color-primary, 0.3), rgba($color-secondary, 0.2), transparent);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  // Corner glow effect
-  &::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
+    left: -100%;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba($color-primary, 0.08) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      transparent 100%
+    );
+    transition: left 0.6s ease;
     pointer-events: none;
   }
 
+  // Soft inner glow
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    0 8px 24px rgba(0, 0, 0, 0.08);
+
   &:hover {
-    transform: translateY(-8px);
-    border-color: rgba($color-primary, 0.15);
+    transform: translateY(-10px) scale(1.02);
     box-shadow:
-      0 4px 8px rgba($color-primary, 0.04),
-      0 8px 16px rgba($color-primary, 0.06),
-      0 16px 32px rgba($color-primary, 0.08),
-      0 32px 64px rgba(0, 0, 0, 0.04);
+      0 12px 28px rgba(0, 0, 0, 0.15),
+      0 20px 48px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset;
 
     &::before {
-      opacity: 1;
-    }
-
-    &::after {
-      opacity: 1;
+      left: 100%;
     }
 
     .iconWrapper {
-      background: $gradient-primary;
-      border-color: transparent;
-      box-shadow:
-        0 8px 24px rgba($color-primary, 0.35),
-        0 4px 8px rgba($color-primary, 0.2);
-
-      svg {
-        color: $color-white;
-        transform: scale(1.1);
-      }
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
 
     .cardNumber {
-      color: rgba($color-primary, 0.15);
-    }
-
-    .cardTitle {
-      color: $color-primary;
+      opacity: 0.3;
+      transform: scale(1.05);
     }
   }
+}
+
+// Gradient variant classes
+.cardPurple {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+}
+
+.cardPink {
+  background: linear-gradient(135deg, #ec4899 0%, #f43f5e 50%, #fb7185 100%);
+}
+
+.cardTeal {
+  background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 50%, #22d3ee 100%);
+}
+
+.cardOrange {
+  background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #fb923c 100%);
 }
 
 .cardContent {
@@ -232,16 +230,15 @@
   justify-content: center;
   width: 60px;
   height: 60px;
-  background: $color-white;
-  border: 1px solid rgba($color-primary, 0.1);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: $border-radius-xl;
-  box-shadow:
-    0 2px 8px rgba($color-primary, 0.06),
-    inset 0 1px 0 rgba($color-white, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   svg {
-    color: $color-primary;
+    color: $color-white;
     transition: all 0.3s ease;
   }
 }
@@ -250,9 +247,9 @@
   font-family: $font-heading;
   font-size: $font-size-4xl;
   font-weight: $font-weight-extrabold;
-  color: rgba($color-gray-light, 0.3);
+  color: rgba(255, 255, 255, 0.2);
   line-height: 1;
-  transition: color 0.4s ease;
+  transition: all 0.4s ease;
   letter-spacing: -0.02em;
 }
 
@@ -260,15 +257,85 @@
   font-family: $font-heading;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
-  color: $color-dark;
+  color: $color-white;
   margin-bottom: $spacing-sm;
   transition: color 0.3s ease;
   letter-spacing: -0.01em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cardDescription {
   font-size: $font-size-sm;
-  color: $color-gray;
+  color: rgba(255, 255, 255, 0.9);
   line-height: $line-height-loose;
   letter-spacing: 0.01em;
+}
+
+// Mobile-only card styles
+@include max-sm {
+  .card {
+    padding: $spacing-lg;
+
+    // Override shimmer effect for mobile
+    &::before {
+      background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.25) 50%,
+        transparent 100%
+      );
+    }
+
+    // Enhanced inner glow for mobile
+    &::after {
+      background: radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+    }
+  }
+
+  // Mobile gradient variants with deeper, richer gradients
+  .cardPurple {
+    background: linear-gradient(145deg, #4f46e5 0%, #7c3aed 40%, #a855f7 80%, #c084fc 100%);
+  }
+
+  .cardPink {
+    background: linear-gradient(145deg, #db2777 0%, #e11d48 40%, #f43f5e 80%, #fb7185 100%);
+  }
+
+  .cardTeal {
+    background: linear-gradient(145deg, #0d9488 0%, #0891b2 40%, #06b6d4 80%, #22d3ee 100%);
+  }
+
+  .cardOrange {
+    background: linear-gradient(145deg, #ea580c 0%, #f59e0b 40%, #fbbf24 80%, #fcd34d 100%);
+  }
+
+  .iconWrapper {
+    width: 52px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    svg {
+      color: $color-white;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+    }
+  }
+
+  .cardNumber {
+    font-size: $font-size-3xl;
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  .cardTitle {
+    font-size: $font-size-lg;
+    color: $color-white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .cardDescription {
+    font-size: $font-size-sm;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
 }

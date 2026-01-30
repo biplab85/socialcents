@@ -35,26 +35,30 @@ export function About() {
           </AnimatedElement>
 
           <div className={styles.grid}>
-            {aboutContent.points.map((point, index) => (
-              <AnimatedElement
-                key={index}
-                animation="fadeInUp"
-                delay={index * 100}
-              >
-                <div className={styles.card}>
-                  <div className={styles.cardContent}>
-                    <div className={styles.cardHeader}>
-                      <div className={styles.iconWrapper}>
-                        <Icon name={point.icon} size={26} />
+            {aboutContent.points.map((point, index) => {
+              const gradientVariants = ['purple', 'pink', 'teal', 'orange'];
+              const variant = gradientVariants[index % gradientVariants.length];
+              return (
+                <AnimatedElement
+                  key={index}
+                  animation="fadeInUp"
+                  delay={index * 100}
+                >
+                  <div className={`${styles.card} ${styles[`card${variant.charAt(0).toUpperCase() + variant.slice(1)}`]}`}>
+                    <div className={styles.cardContent}>
+                      <div className={styles.cardHeader}>
+                        <div className={styles.iconWrapper}>
+                          <Icon name={point.icon} size={26} />
+                        </div>
+                        <span className={styles.cardNumber}>0{index + 1}</span>
                       </div>
-                      <span className={styles.cardNumber}>0{index + 1}</span>
+                      <h3 className={styles.cardTitle}>{point.title}</h3>
+                      <p className={styles.cardDescription}>{point.description}</p>
                     </div>
-                    <h3 className={styles.cardTitle}>{point.title}</h3>
-                    <p className={styles.cardDescription}>{point.description}</p>
                   </div>
-                </div>
-              </AnimatedElement>
-            ))}
+                </AnimatedElement>
+              );
+            })}
           </div>
         </div>
       </Container>
